@@ -1,5 +1,4 @@
 <?php
-
 include_once("./Db.php");
 $db = new Db();
 $conn = $db->connect("master_data");
