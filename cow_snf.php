@@ -57,9 +57,9 @@ if (($getfile = fopen($csvFile, "r")) !== FALSE) {
         $fat1 = $fat1 + 0.1;
     }
     fclose($getfile);*/
-    for($i = $f_start; $i <= $f_end; $i++){
+    for($i = $f_start; $i < $f_end; $i++){
         $snf = $row_low[3];
-        for($j = $f_start; $j <= $f_end; $j++){
+        for($j = $f_start; $j < count($data1[$i]); $j++){
 //            echo "Row $i AND Column $j Value=".$data1[$i][$j];
 //            echo "<br>";
 //            echo $j;

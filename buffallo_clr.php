@@ -24,4 +24,36 @@ if(mysqli_num_rows($res_high) > 0){
 //echo "<pre>";
 //print_r($row_low);
 
-$csvFile = "CLR.csv";
+$csv_file = "CLR.csv";
+
+$db_up = new Models();
+$conn_rate = $db_up->connect("rate_tables");
+
+if (($getfile = fopen($csv_file, "r")) !== FALSE) {
+    $fat_low = $row_low[3];
+    $fat_high = $row_high[3];
+    
+    $f_start = $fat_low * 10;
+    $f_end = $fat_high * 10;
+    Models::truncate("buffalo_fat_clr");
+    while (($data = fgetcsv($getfile, 1000, ",")) !== FALSE) {
+        $data1[] = $data;
+    }
+    for($i = $f_start; $i < $f_end; $i++){
+        $clr = $row_low[3];
+        for($j = $f_start; $j < count($data1[$i]); $j++){
+//            echo "Row $i AND Column $j Value=".$data1[$i][$j];
+//            echo "<br>";
+            $arr = array(
+                "Fat"=>$fat_low,
+                "Clr"=>$clr,
+                "Rate"=>  (number_format((float)$data1[$i][$j],3,'.','')/100)
+            );
+            $clr = $clr + 0.1;
+//            echo "<pre>";
+//            print_r($arr);
+            Models::insert($arr,"buffalo_fat_clr");
+        }
+        $fat_low = $fat_low + 0.1;
+    }
+}
