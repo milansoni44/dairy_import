@@ -1,5 +1,5 @@
 <?php
-include_once("./Models.php");
+include_once("./models/Models.php");
 $db = new Models();
 $conn = $db->connect("master_data");
 $res_low = Models::select("config_data","BUFFALO","FAT_LOW_LIMIT");

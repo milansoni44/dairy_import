@@ -11,7 +11,7 @@
  *
  * @author Intel
  */
-include_once './Db.php';
+include_once './core/Db.php';
 class Models extends Db{
     //put your code here
     public function __construct() {
