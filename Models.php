@@ -17,4 +17,20 @@ class Models extends Db{
     public function __construct() {
         parent::__construct();
     }
+    
+    public function connect($db = NULL) {
+        parent::connect($db);
+    }
+    
+    public static function select($table = NULL, $params1 = NULL, $params2 = NULL) {
+        return DB::select($table, $params1, $params2);
+    }
+    
+    public static function truncate($table = NULL) {
+        Db::truncate($table);
+    }
+    
+    public static function insert($data = array(), $table = NULL) {
+        Db::insert($data, $table);
+    }
 }
